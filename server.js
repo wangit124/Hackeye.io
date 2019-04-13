@@ -24,7 +24,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Enable EJS
-app.set('views', __dirname);
+app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // Include static files
@@ -33,8 +33,8 @@ app.use(express.static('./public'));
 
 // Render ejs with simple message
 app.get('/', (req, res) => {
-    res.render('index.ejs', {
-        message: "Intern Challenge!"
+    res.render('index', {
+        message: JSON.stringify(apiData)
     });
 });
 
