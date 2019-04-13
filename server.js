@@ -18,4 +18,22 @@ apiData.createTokenUrl = function (code) {
     '&grant_type=authorization_code');
 };
 
-console.log(apiData);
+// Load express, bodyparse modules
+const express = require('express');
+const bodyParser = require('body-parser');  
+const app = express();
+
+// Enable EJS
+app.set('views', __dirname);
+app.set('view engine', 'ejs');
+
+// Include static files
+app.use(bodyParser.urlencoded({ extended: true }));                              
+app.use(express.static('./public')); 
+
+// Open on port 8000
+const port = 8000;
+app.listen(port, ()=> {
+    console.log('Running on localhost: '+port+'...');
+});
+
