@@ -38,6 +38,11 @@ app.get('/', (req, res) => {
     });
 });
 
+// Test * link
+app.all('*', (req, res) => {
+    res.redirect('/');
+});
+
 // Open on port 8000
 const port = 8000;
 app.listen(port, ()=> {
