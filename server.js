@@ -41,9 +41,12 @@ app.listen(port, () => {
 
 // Render ejs with simple message
 app.get('/', (req, res) => {
-    res.render('index', {
-        message: "Night Watch"
-    });
+    res.render('index');
+});
+
+// Render loading page
+app.get('/loading', (req, res) => {
+    res.render('loading');
 });
 
 // Render projects landing page, AKA pg 1

@@ -1,0 +1,69 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineMax.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<style>
+    #logo path:hover {
+        fill: #000;
+    }
+
+    #HackEye:hover path {
+        fill: #000;
+    }
+</style>
+<div class="logo-container">
+    <svg id="logo" version="1.0" xmlns="http://www.w3.org/2000/svg" width="60%" height="60%"
+        viewBox="0 0 600.000000 596.000000" preserveAspectRatio="xMidYMid meet">
+        <metadata>
+            Created by potrace 1.15, written by Peter Selinger 2001-2017
+        </metadata>
+        <g transform="translate(0.000000,596.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+            <path id="sqr-0" d="M0 5240 l0 -720 725 0 725 0 0 720 0 720 -725 0 -725 0 0 -720z" />
+            <path id="sqr-1" d="M4550 5240 l0 -720 725 0 725 0 0 720 0 720 -725 0 -725 0 0 -720z" />
+            <path id="sqr-2" d="M1540 3760 l0 -730 94 0 93 0 32 51 c130 210 353 436 564 573 190
+    124 360 182 620 211 l57 6 0 310 0 309 -730 0 -730 0 0 -730z" />
+            <path id="sqr-3" d="M3030 4180 l0 -309 33 -5 c262 -39 329 -57 477 -131 266 -133 485
+    -337 707 -658 l33 -47 105 0 105 0 0 730 0 730 -730 0 -730 0 0 -310z" />
+            <path id="pupil-0" d="M2884 3505 c-187 -41 -366 -239 -368 -409 l-1 -61 243 -3 242 -2 0
+    245 0 245 -27 -1 c-16 0 -55 -7 -89 -14z" />
+            <path id="pupil-1" d="M3037 3513 c-4 -3 -7 -114 -7 -245 l0 -238 230 0 c263 0 251 -5 230
+    88 -46 207 -207 362 -411 396 -19 4 -38 3 -42 -1z" />
+            <path id="sqr-4" d="M1530 2250 l0 -730 730 0 730 0 0 323 c0 238 -3 326 -12 335 -7 7
+    -30 12 -53 12 -75 0 -224 30 -320 64 -291 104 -581 341 -807 659 l-48 67 -110
+    0 -110 0 0 -730z" />
+            <path id="pupil-2" d="M2514 2933 c3 -26 24 -84 46 -128 69 -144 221 -256 368 -271 l62 -7
+    0 227 0 226 -241 0 -242 0 7 -47z" />
+            <path id="pupil-3" d="M3030 2754 l0 -227 56 7 c128 15 285 128 351 252 29 56 63 152 63
+    181 0 10 -47 13 -235 13 l-235 0 0 -226z" />
+            <path id="sqr-5" d="M4175 2873 c-179 -240 -415 -447 -635 -558 -131 -66 -317 -116 -470
+    -127 l-35 -3 -3 -332 -2 -333 730 0 730 0 0 730 0 730 -118 0 -117 0 -80 -107z" />
+            <path id="sqr-6" d="M0 730 l0 -730 725 0 725 0 0 730 0 730 -725 0 -725 0 0 -730z" />
+            <path id="sqr-7" d="M4550 730 l0 -730 725 0 725 0 0 730 0 730 -725 0 -725 0 0 -730z" />
+        </g>
+    </svg>
+
+    <h1>Loading...</h1>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Create timeline variable
+        var tl = new TimelineMax({ repeat: -1 });
+        tl.from('#sqr-0', 0.1, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-1', 0.11, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-7', 0.12, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-6', 0.13, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-4', 0.18, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-2', 0.2, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-3', 0.22, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#sqr-5', 0.24, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#pupil-2', 0.26, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#pupil-0', 0.28, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#pupil-1', 0.30, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+            .from('#pupil-3', 0.32, { scale: 0, transformOrigin: 'center', ease: Back.easeOut, delay: 0.0 })
+    });
+
+    // Load projects page
+    window.location.assign('/projects');
+
+</script>
