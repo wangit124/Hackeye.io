@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="1"
-            tests="2">
+            tests="1">
 
   <testsuite name="testmain"
     errors="0" failures="1" hostname="" id="" package="testmain" skipped="0"
-    tests="2" time="22.08" timestamp="">
+    tests="1" time="18.16" timestamp="">
   
-    <testcase name="Test Title Page" classname="testmain" time="6.400" assertions="5">
+    <testcase name="Test Title Page" classname="testmain" time="18.16" assertions="7">
 
     
 
@@ -18,13 +18,12 @@
     
 
     
-    </testcase>
-  
-    <testcase name="Test Load Page" classname="testmain" time="15.68" assertions="1">  <failure message="Timed out while waiting for element &lt;#logo&gt; to be present for 5000 milliseconds. - expected [0;32m&#34;visible&#34;[0m but got: [0;31m&#34;not found&#34;[0m">    at Object.Test Load Page (/Users/Thrill/Desktop/Hackeye.io/tests/testmain.js:18:8)
+
+      <failure message="Testing if element &lt;#projects&gt; contains text: &#34;hi&#34; in 1000 ms. - expected [0;32m&#34;hi&#34;[0m but got: [0;31m&#34;Hi&#34;[0m">    at Object.Test Title Page (/Users/Thrill/Desktop/Hackeye.io/tests/testmain.js:15:15)
     at &lt;anonymous&gt;
     at process._tickCallback (internal/process/next_tick.js:189:7)</failure>
 
-    <failure message="    at Object.Test Load Page (/Users/Thrill/Desktop/Hackeye.io/tests/testmain.js:18:8)">    at &lt;anonymous&gt;
+    <failure message="    at Object.Test Title Page (/Users/Thrill/Desktop/Hackeye.io/tests/testmain.js:15:15)">    at &lt;anonymous&gt;
     at process._tickCallback (internal/process/next_tick.js:189:7)</failure>
     </testcase>
   

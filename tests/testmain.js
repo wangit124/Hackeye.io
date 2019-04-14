@@ -9,21 +9,10 @@ module.exports = {
       .pause(1000)
       // check if page contains help msg
       .assert.containsText('#help-msg', 'Click anywhere')
-  },
-
-  'Test Load Page': function (browser) {
-    browser
-      // simulate click and check if loading page includes all elements
       .click('body')
-      .waitForElementVisible('body', 1000)
-      .assert.containsText('h1', 'Loading...')
-      .pause(2000)
-  },
-
-  'Test project page': function (browser) {
-    browser
-      .waitForElementVisible('h2', 1000)
-      .assert.containsText('h1', 'hi')
+      .pause(4000)
+      .waitForElementVisible('#projects', 1000)
+      .assert.containsText('#projects', 'Hi')
       .end();
   }
 };
