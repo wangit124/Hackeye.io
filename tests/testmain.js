@@ -15,12 +15,15 @@ module.exports = {
     browser
       // simulate click and check if loading page includes all elements
       .click('body')
-      .waitForElementVisible('#logo')
-      .waitForElementVisible('#HackEye')
-      .pause(1000)
-      .assert.containsText('h1', 'Loading...');
+      .waitForElementVisible('body', 1000)
+      .assert.containsText('h1', 'Loading...')
+      .pause(2000)
+  },
 
-    browser.expect.element('body').to.be.present.before(4000);
-    browser.end();
+  'Test project page': function (browser) {
+    browser
+      .waitForElementVisible('h2', 1000)
+      .assert.containsText('h1', 'hi')
+      .end();
   }
 };

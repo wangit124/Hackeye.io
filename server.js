@@ -60,11 +60,11 @@ app.get('/projects', (req, res) => {
         // If successful, render JSON data
         if (!error && response.statusCode === 200) {
             res.render('projects', {
-                projects: body
+                projects: "Hi"
             });
         } else {
             console.log('\nError: ', error, '\nResponse body: ', body);
-            res.render(body);
+            res.send(body);
         }
     });
 });
