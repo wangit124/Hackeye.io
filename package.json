@@ -7,8 +7,10 @@
     "test": "tests"
   },
   "dependencies": {
+    "debug": "^4.1.1",
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "chromedriver": "^2.46.0",

@@ -3,7 +3,7 @@
         "tests"
     ],
     "webdriver": {
-        "start_process":true,
+        "start_process": true,
         "server_path": "node_modules/.bin/chromedriver",
         "cli_args": [
             "--verbose"
