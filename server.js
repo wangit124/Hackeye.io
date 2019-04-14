@@ -60,32 +60,19 @@ app.get('/projects', (req, res) => {
         if (!error && response.statusCode === 200) {
             var projData = JSON.parse(body);
             var projArr = projData['projects'];
-            var userArr = [];
-            // For each owner ID, search for user metadata
-            for (var ind = 0; ind < projArr.length; ind++) {
-                var owner_id = projArr[ind]['owner_id'];
-                // construct user search api url
-                var userUrl = global.apiData.apiUrl + '/users/' + owner_id + apiData.apiKey;
-                // Store API URL in array
-                userArr.push(owner_id);
-            }
 
-            // add debug statements
+            // add debug statement
             debug(projArr);
-            debug(userArr);
 
             // Render data in ejs
             res.render('projects', {
                 projects: projArr,
-                owner: userArr,
-                per_page: projData['per_page']
             });
 
         } else {
             console.log('\nError: ', error, '\nResponse body: ', body);
             res.render('projects', {
-                projects: "Projects not found.",
-                owner: null
+                projects: "Projects not found."
             });
         }
     });

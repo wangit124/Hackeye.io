@@ -10,10 +10,9 @@
 <body>
     <div id="projects">
         <% for (var index =0; index<projects.length; index++) {%>
-            <%-include('./card', {num: index, metadata: JSON.stringify(projects[index])}); %>
+            <%-include('./card', {num: index+1, metadata: projects[index]}); %>
         <% }%>
     </div>
-    <%=owner[0]%>
 </body>
 
 </html>
