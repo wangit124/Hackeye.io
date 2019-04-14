@@ -40,14 +40,10 @@ app.listen(port, ()=> {
 // Render ejs with simple message
 app.get('/', (req, res) => {
     res.render('index', {
-        message: JSON.stringify(apiData)
+        message: "Night Watch"
     });
 });
 
-// Test * link
-app.all('*', (req, res) => {
-    res.redirect('/');
-});
 
 
 

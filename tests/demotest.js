@@ -1,12 +1,11 @@
-const assert = require('assert');
-
 module.exports = {
-  '@unitTest' : true,
-
-  'demo UnitTest' : function (done) {
-    assert.equal('TEST', 'TEST');
-    setTimeout(function() {
-      done();
-    }, 10);
+  'Demo test Google' : function (browser) {
+    browser
+      .url('localhost:8000')
+      .waitForElementVisible('body')
+      .waitForElementVisible('p')
+      .pause(1000)
+      .assert.containsText('h2', 'Night Watch')
+      .end();
   }
 };
