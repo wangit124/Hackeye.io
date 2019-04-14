@@ -1,17 +1,13 @@
 <link rel="stylesheet" href="/css/style.css">
-<div class="project-item">Project <%=num%>: 
-<img width="300" height="300" src=<%=metadata['image_url']%>></img>
+<div class="project-item">Project <%=num%>:
+    <img onmouseenter="displayMeta(<%=metadata['owner_id']%>)" onmouseleave="displayMeta(null)" width="300" height="300"
+        src=<%=metadata['image_url']%>></img>
 </div>
 <script>
 
-    function displayMeta(x) {
-        var user = document.getElementById('userInfo');
-        var change = document.getElementById('id');
-        if (x == 1) {
-            change.innerHTML = user.textContent;
-        }
-        if (x == 0) {
-            change.innerHTML = "Hi";
+    function displayMeta(flag) {
+        if (flag) {
+            alert(flag);
         }
     }
 
