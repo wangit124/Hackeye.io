@@ -1,15 +1,15 @@
 <style>
     body {
-        background-size: 400px;
+        background-size: 600px;
     }
-    p {
-        background-color:white;
+    #project-id {
+        text-align:center;
     }
 </style>
 <img onmouseenter="displayMeta(<%=metadata['owner_id']%>)" onmouseleave="displayMeta(null)" width="100%" height="auto"
     src=<%=metadata['image_url']%>>
 </img>
-<p id="project-id">PROJECT</p>
+<p id="project-id"><%=metadata['name']%></p>
 <script>
 
     // By default, hide tooltip

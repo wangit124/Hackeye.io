@@ -103,7 +103,7 @@ app.get('/projects/:pg', (req, res) => {
 });
 
 // All other redirect to main
-app.get('*', (req, res) =>{
+app.get('*', (req, res) => {
     res.redirect('/');
 });
 
