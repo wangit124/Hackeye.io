@@ -1,11 +1,10 @@
-// Fill in hackaday API data
+// Store hackaday API data
 global.apiData = {};
-
 apiData.clientId = 'IqOKhUebqhieIOciR2mf2WJT90ZLkcVJ4OEIcdwgMlZEcTw5';
 apiData.clientSecret = 'Ayc2OnrtVRXV2OQtP91EEHeB8ZDAeN3J6RAANxTFrU5MVgZL';
 apiData.userKey = 'QlhAEh7ym6so8Puk';
 
-// API URLs:
+// Create API URLs:
 apiData.apiKey = '?api_key=' + apiData.userKey;
 apiData.apiUrl = 'https://api.hackaday.io/v1';
 apiData.apiAuthUrl = 'https://api.hackaday.io/v1/me' + apiData.apiKey;
@@ -19,17 +18,17 @@ apiData.createTokenUrl = function (code) {
 };
 
 // Load express, bodyparse, debug and request modules
-const debug = require('debug')('http')
 const request = require('request');
-const express = require('express');
+const debug = require('debug')('http')
 const bodyParser = require('body-parser');
+const express = require('express');
 const app = express();
 
 // Enable EJS
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-// Include static files
+// Include static files and enable body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
@@ -39,7 +38,7 @@ app.listen(port, () => {
     console.log('Running on localhost: ' + port + '...');
 });
 
-// Render ejs with simple message
+// Render title page
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -49,22 +48,41 @@ app.get('/loading', (req, res) => {
     res.render('loading');
 });
 
-// Render projects landing page, AKA pg 1
+// Render projects landing page pg 1
 app.get('/projects', (req, res) => {
-    // construct url to get certain project page
+    // construct url to get first project page
     var pgNum = 1;
-    var url = global.apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=50' + '&page=' + pgNum;
+    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=50' + '&page=' + pgNum;
 
     // Make api call
     request.get(url, (error, response, body) => {
         // If successful, render JSON data
         if (!error && response.statusCode === 200) {
+            var projData = JSON.parse(body);
+            var projArr = projData['projects'];
+            var userArr = [];
+            // For each owner ID, search for user metadata
+            for (var ind = 0; ind < projArr.length; ind++) {
+                var owner_id = projArr[ind]['owner_id'];
+                debug(owner_id);
+                // construct user search api url
+                var userUrl = global.apiData.apiUrl + '/users/' + owner_id + apiData.apiKey;
+                debug(userUrl);
+                // Store API URL in array
+                userArr.push(userUrl);
+            }
             res.render('projects', {
-                projects: "Hi"
+                projects: JSON.stringify(projData['projects'][0]),
+                owner: userArr,
+                per_page: projData['per_page']
             });
+            // debug(projData);
         } else {
             console.log('\nError: ', error, '\nResponse body: ', body);
-            res.send(body);
+            res.render('projects', {
+                projects: "Projects not found.",
+                owner: null
+            });
         }
     });
 });
@@ -80,15 +98,16 @@ app.get('/projects/:pg', (req, res) => {
     request.get(url, (error, response, body) => {
         // If successful, render JSON data
         if (!error && response.statusCode === 200) {
+            var projData = JSON.parse(body);
             res.render('projects', {
-                projects: body
+                projects: projData['projects'],
+                owner: projData['projects'][0]['id']
             });
         } else {
             console.log('\nError: ', error, '\nResponse body: ', body);
             res.render(body);
         }
     });
-
 });
 
 

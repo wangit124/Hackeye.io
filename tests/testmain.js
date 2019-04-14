@@ -12,7 +12,7 @@ module.exports = {
       .click('body')
       .pause(4000)
       .waitForElementVisible('#projects', 1000)
-      .assert.containsText('#projects', 'Hi')
+      .assert.containsText('#projects', '20853')
       .end();
   }
 };
