@@ -52,7 +52,7 @@ app.get('/loading', (req, res) => {
 app.get('/projects', (req, res) => {
     // construct url to get first project page
     var pgNum = 1;
-    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=50' + '&page=' + pgNum;
+    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum;
 
     // Make api call
     request.get(url, (error, response, body) => {
@@ -70,35 +70,41 @@ app.get('/projects', (req, res) => {
             });
 
         } else {
-            console.log('\nError: ', error, '\nResponse body: ', body);
-            res.render('projects', {
-                projects: "Projects not found."
-            });
+            res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
         }
     });
 });
 
 // Render nth projects page 
 app.get('/projects/:pg', (req, res) => {
-    // construct url to get certain project page
+    // construct url to get first project page
     var pgNum = req.params.pg;
-    var url = global.apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=20' + '&page=' + pgNum;
-    debug(url);
+    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum;
 
     // Make api call
     request.get(url, (error, response, body) => {
         // If successful, render JSON data
-        if (!error && response.statusCode === 200) {
+        if (!error && response.statusCode === 200 && pgNum <= JSON.parse(body)['last_page'] && pgNum >= 0) {
             var projData = JSON.parse(body);
+            var projArr = projData['projects'];
+
+            // add debug statement
+            debug(projArr);
+
+            // Render data in ejs
             res.render('projects', {
-                projects: projData['projects'],
-                owner: projData['projects'][0]['id']
+                projects: projArr,
             });
+
         } else {
-            console.log('\nError: ', error, '\nResponse body: ', body);
-            res.render(body);
+            res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
         }
     });
+});
+
+// All other redirect to main
+app.get('*', (req, res) =>{
+    res.redirect('/');
 });
 
 

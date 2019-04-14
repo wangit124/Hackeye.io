@@ -2,10 +2,6 @@
     body {
         background-size: 400px;
     }
-    span {
-        text-align:center;
-        margin:0;
-    }
     p {
         background-color:white;
     }
@@ -13,9 +9,7 @@
 <img onmouseenter="displayMeta(<%=metadata['owner_id']%>)" onmouseleave="displayMeta(null)" width="100%" height="auto"
     src=<%=metadata['image_url']%>>
 </img>
-<p>PROJECT</p>
-<span>POPUP</span>
-
+<p id="project-id">PROJECT</p>
 <script>
 
     // By default, hide tooltip
@@ -27,7 +21,7 @@
     function displayMeta(owner) {
         // If owner not null, 
         if (owner) {
-
+            document.getElementById('project-id').innerHTML = owner; 
         }
     }
 
