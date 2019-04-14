@@ -1,2 +1,16 @@
-<h3><%=owner%></h3>
-<h3><%=per_page%></h3>
+<link rel="stylesheet" href="/css/style.css">
+<div class="project-item">Project <%=num%>: <%=metadata%></div>
+<script>
+
+    function displayMeta(x) {
+        var user = document.getElementById('userInfo');
+        var change = document.getElementById('id');
+        if (x == 1) {
+            change.innerHTML = user.textContent;
+        }
+        if (x == 0) {
+            change.innerHTML = "Hi";
+        }
+    }
+
+</script>

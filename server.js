@@ -64,19 +64,23 @@ app.get('/projects', (req, res) => {
             // For each owner ID, search for user metadata
             for (var ind = 0; ind < projArr.length; ind++) {
                 var owner_id = projArr[ind]['owner_id'];
-                debug(owner_id);
                 // construct user search api url
                 var userUrl = global.apiData.apiUrl + '/users/' + owner_id + apiData.apiKey;
-                debug(userUrl);
                 // Store API URL in array
-                userArr.push(userUrl);
+                userArr.push(owner_id);
             }
+
+            // add debug statements
+            debug(projArr);
+            debug(userArr);
+
+            // Render data in ejs
             res.render('projects', {
-                projects: JSON.stringify(projData['projects'][0]),
+                projects: projArr,
                 owner: userArr,
                 per_page: projData['per_page']
             });
-            // debug(projData);
+
         } else {
             console.log('\nError: ', error, '\nResponse body: ', body);
             res.render('projects', {
