@@ -8,11 +8,11 @@
 </head>
 
 <body>
-    <div id="projects">
+    <ul id="projects">
         <% for (var index =0; index<projects.length; index++) {%>
-            <%-include('./card', {num: index+1, metadata: projects[index]}); %>
+            <li id="project-item"><%-include('./card', {num: index+1, metadata: projects[index]}); %></li>
         <% }%>
-    </div>
+    </ul>
 </body>
 
 </html>

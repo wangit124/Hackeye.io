@@ -13,7 +13,7 @@ body {
     -o-animation: 15s linear 0s normal none infinite animate;
     animation: 15s linear 0s normal none infinite animate;
     background-position: center;
-    background-size: cover;
+    background-size: 852px;
     width: 100vw;
     height: 100vh;
 }
@@ -48,6 +48,24 @@ h2 {
 
 #help-msg {
     font-size: 20px;
+}
+
+#projects {
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    list-style: none;
+    margin-right: 10%;
+}
+
+#project-item {
+    background-color: white;
+    float: left;
+    width: 100%;
+    height: auto;
+    border-radius: 5%;
+    overflow: hidden;
+    margin-top: 20px;
 }
 
 @-webkit-keyframes animate {

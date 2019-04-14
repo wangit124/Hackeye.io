@@ -1,13 +1,33 @@
-<link rel="stylesheet" href="/css/style.css">
-<div class="project-item">Project <%=num%>:
-    <img onmouseenter="displayMeta(<%=metadata['owner_id']%>)" onmouseleave="displayMeta(null)" width="300" height="300"
-        src=<%=metadata['image_url']%>></img>
-</div>
+<style>
+    body {
+        background-size: 400px;
+    }
+    span {
+        text-align:center;
+        margin:0;
+    }
+    p {
+        background-color:white;
+    }
+</style>
+<img onmouseenter="displayMeta(<%=metadata['owner_id']%>)" onmouseleave="displayMeta(null)" width="100%" height="auto"
+    src=<%=metadata['image_url']%>>
+</img>
+<p>PROJECT</p>
+<span>POPUP</span>
+
 <script>
 
-    function displayMeta(flag) {
-        if (flag) {
-            alert(flag);
+    // By default, hide tooltip
+    document.addEventListener('DOMContentLoaded', function() {
+
+    });
+
+    // Display metadata on hover
+    function displayMeta(owner) {
+        // If owner not null, 
+        if (owner) {
+
         }
     }
 
