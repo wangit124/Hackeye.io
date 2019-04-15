@@ -52,7 +52,9 @@ app.get('/loading', (req, res) => {
 app.get('/projects', (req, res) => {
     // construct url to get first project page
     var pgNum = 1;
-    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum;
+
+    // Sort search by number of views
+    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum + '&sortby=views';
 
     // Make api call
     request.get(url, (error, response, body) => {
@@ -62,8 +64,26 @@ app.get('/projects', (req, res) => {
             var projArr = projData['projects'];
 
             // add debug statement
-            debug(projArr);
+            //debug(projArr);
 
+            // Get all user information
+            for (var i=0; i<projArr.length; i++) {
+                var currOwner = projArr[i]['owner_id'];
+                // construct url to fetch user data
+                var userUrl = global.apiData.apiUrl + '/users/' + currOwner + global.apiData.apiKey;
+                // Make api call
+                request.get(userUrl, (error2, response2, body2) => {
+                    if (!error2 && response2.statusCode === 200) {
+                        // Add user item to array
+                        //debug(JSON.parse(body2));
+                        userArr.push(JSON.parse(body2));
+                    }
+                    else{
+                        res.send("Users not found. Please try again.");
+                    }
+                });
+            }
+            
             // Render data in ejs
             res.render('projects', {
                 projects: projArr,
@@ -79,7 +99,9 @@ app.get('/projects', (req, res) => {
 app.get('/projects/:pg', (req, res) => {
     // construct url to get first project page
     var pgNum = req.params.pg;
-    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum;
+
+    // Sort by number of views
+    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum + '&sortby=views';
 
     // Make api call
     request.get(url, (error, response, body) => {

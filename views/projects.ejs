@@ -8,10 +8,9 @@
 </head>
 
 <body>
-    <h1> PROJECTS</h1>
+    <h1 id="header"> PROJECTS</h1>
     <div id = "paging">
         <div id="prev-block">Previous</div> 
-        <div id="sep-block"></div>
         <div id="next-block">Next</div>
     </div>
     <ul id="projects">
@@ -19,14 +18,13 @@
             <li id="project-item"><%-include('./card', {num: index+1, metadata: projects[index]}); %></li>
         <% }%>
     </ul>
-    <br><br>
     <p class="footer">Developed by: Howard Wang 2019</p>
-    <br>
 </body>
 <script>
     // Move prev/next nav on scroll
     document.addEventListener('scroll', function(){
         document.getElementById('paging').style.top = '5vw';
+        document.getElementById('header').style.margin='40px 40px 0 40px';
     });
 </script>
 </html>
