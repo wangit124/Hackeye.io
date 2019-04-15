@@ -17,11 +17,12 @@ apiData.createTokenUrl = function (code) {
         '&grant_type=authorization_code');
 };
 
-// Load express, bodyparse, debug and request modules
+// Load express, bodyparse, debug, fs and request modules
 const request = require('request');
 const debug = require('debug')('http')
 const bodyParser = require('body-parser');
 const express = require('express');
+const fs = require('fs');
 const app = express();
 
 // Enable EJS
@@ -64,32 +65,15 @@ app.get('/projects', (req, res) => {
             var projArr = projData['projects'];
 
             // add debug statement
-            //debug(projArr);
+            debug(projArr);
 
-            // Get all user information
-            for (var i=0; i<projArr.length; i++) {
-                var currOwner = projArr[i]['owner_id'];
-                // construct url to fetch user data
-                var userUrl = global.apiData.apiUrl + '/users/' + currOwner + global.apiData.apiKey;
-                // Make api call
-                request.get(userUrl, (error2, response2, body2) => {
-                    if (!error2 && response2.statusCode === 200) {
-                        // Add user item to array
-                        //debug(JSON.parse(body2));
-                        userArr.push(JSON.parse(body2));
-                    }
-                    else{
-                        res.send("Users not found. Please try again.");
-                    }
-                });
-            }
-            
             // Render data in ejs
             res.render('projects', {
                 projects: projArr,
             });
 
-        } else {
+        }
+        else {
             res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
         }
     });

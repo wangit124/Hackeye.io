@@ -8,26 +8,35 @@
         text-align:center;
     }
     .projStats{
+        margin-top:10px;
         list-style:none;
         display:inline-block;
     }
-    #projstat{
-        text-align:center;
-        float:left;
-    }
     #projsum{
-
         font-size:13px;
     }
     #projname{
         font-size:18px;
+    }
+    .projStats li {
+        text-align:center;
+        float:left;
+    }
+
+    .projStats li img {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        float:left;
+        border-radius:50%;
+        height:50px;
+        width:50px;
     }
 </style>
 <img width="100%" height="auto" src=<%=metadata['image_url']%>>
 </img>
 
 <ul class="projStats">
-    <li id="projname"><%=metadata['owner_id']%></p>
+    <li id="user-img-<%=num%>"></li>
+    <div id="user-name-<%=num%>"></div>
     <li id="projstat"><%=metadata['views']%></li>
     <li id="projstat"><%=metadata['comments']%></li>
     <li id="projstat"><%=metadata['followers']%></li>
@@ -40,7 +49,29 @@
 
     // By default, hide tooltip
     document.addEventListener('DOMContentLoaded', function() {
+        // Get the user id and construct url for GET call
+        var userId = <%=metadata['owner_id']%>
+        var index = <%=num%>
+        var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
+        var imgId = 'user-img-'+index;
+        var nameId = 'user-name-'+index;
 
+        // Create new https request
+        var xhttp = new XMLHttpRequest();
+        // Once request is recieved, parse response and append
+        xhttp.onreadystatechange = function() {
+            // If request is done and successful, parse
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+                var userImg = document.getElementById(imgId);
+                var userName = document.getElementById(nameId);
+                userImg.innerHTML = '<img src='+data['image_url']+'>';
+                userName.innerHTML= '<a href='+data['url']+'>'+data['username']+'</a>';
+            }
+        };
+        xhttp.open("GET", userUrl, true);
+        xhttp.send();
     });
 
     // Display metadata on hover
