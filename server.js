@@ -49,63 +49,34 @@ app.get('/loading', (req, res) => {
     res.render('loading');
 });
 
-// Render projects landing page pg 1
-app.get('/projects', (req, res) => {
-    // construct url to get first project page
-    var pgNum = 1;
-
-    // Sort search by number of views
-    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum + '&sortby=views';
-
-    // Make api call
-    request.get(url, (error, response, body) => {
-        // If successful, render JSON data
-        if (!error && response.statusCode === 200) {
-            var projData = JSON.parse(body);
-            var projArr = projData['projects'];
-
-            // add debug statement
-            debug(projArr);
-
-            // Render data in ejs
-            res.render('projects', {
-                projects: projArr,
-            });
-
-        }
-        else {
-            res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
-        }
-    });
-});
-
 // Render nth projects page 
 app.get('/projects/:pg', (req, res) => {
-    // construct url to get first project page
-    var pgNum = req.params.pg;
+   // construct url to get first project page
+   var pgNum = req.params.pg;
 
-    // Sort by number of views
-    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=30' + '&page=' + pgNum + '&sortby=views';
+   // Sort search by number of views
+   var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=5' + '&page=' + pgNum + '&sortby=views';
 
-    // Make api call
-    request.get(url, (error, response, body) => {
-        // If successful, render JSON data
-        if (!error && response.statusCode === 200 && pgNum <= JSON.parse(body)['last_page'] && pgNum >= 0) {
-            var projData = JSON.parse(body);
-            var projArr = projData['projects'];
+   // Make api call
+   request.get(url, (error, response, body) => {
+       // If successful, render JSON data
+       if (!error && response.statusCode === 200) {
+           var projData = JSON.parse(body);
+           var projArr = projData['projects'];
 
-            // add debug statement
-            debug(projArr);
+           // add debug statement
+           debug(projArr);
 
-            // Render data in ejs
-            res.render('projects', {
-                projects: projArr,
-            });
+           // Render data in ejs
+           res.render('projects', {
+               projects: projArr
+           });
 
-        } else {
-            res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
-        }
-    });
+       }
+       else {
+           res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
+       }
+   });
 });
 
 // All other redirect to main
