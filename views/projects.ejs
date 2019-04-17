@@ -64,7 +64,7 @@
             var objInd = parseInt(currObjId);
             var userMeta = popups[objInd - 1];
             var currId = pic.getAttribute('data-id');
-            var userUrl = 'https://api.hackaday.io/v1/users/' + currId + '?api_key=QlhAEh7ym6so8Puk';
+            var userUrl = 'https://api.hackaday.io/v1/users/' + currId + '?api_key=***HIDDEN***';
 
             // Set visible
             userMeta.style.visibility = 'visible';
@@ -132,7 +132,7 @@
             var prevPage = parseInt(currPage) - 1;
 
             // Construct url
-            masterURL = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + prevPage + '&sortby=views';;
+            masterURL = 'https://api.hackaday.io/v1/projects?api_key=***HIDDEN*** &per_page=' + perPage + '&page=' + prevPage + '&sortby=views';;
 
             // Change url to match page
             window.history.pushState("previous", "page " + prevPage, "/projects/" + prevPage);
@@ -149,7 +149,7 @@
             var nextPage = parseInt(currPage) + 1;
 
             // Construct url
-            masterURL = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + nextPage + '&sortby=views';;
+            masterURL = 'https://api.hackaday.io/v1/projects?api_key=***HIDDEN*** &per_page=' + perPage + '&page=' + nextPage + '&sortby=views';
 
             // Change url to match page
             window.history.pushState("next", "page " + nextPage, "/projects/" + nextPage);
@@ -175,7 +175,7 @@
 
                 // Get the user id and construct url for GET call
                 var userId = projects[i]['owner_id'];
-                var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
+                var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=***HIDDEN*** ';
 
                 // If hover on user image, display metadata
                 var profile = projItems[i].getElementsByClassName('profpic')[0];
