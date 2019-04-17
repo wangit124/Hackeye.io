@@ -1,7 +1,7 @@
 module.exports = {
   'Test Title Page': function (browser) {
     browser
-      .url('localhost:8000')
+      .url('https://hackeye-io.herokuapp.com')
       .waitForElementVisible('body')
       .waitForElementVisible('#logo', 2000)
       .waitForElementVisible('#HackEye', 2000)
@@ -12,7 +12,15 @@ module.exports = {
       .click('body')
       .pause(4000)
       .waitForElementVisible('#projects', 1000)
-      .assert.containsText('#projects', '20853')
+      .click('#next-block')
+      .pause(1000)
+      .assert.urlContains('2')
+      .click('#next-block')
+      .pause(1000)
+      .assert.urlContains('3')
+      .click('#prev-block')
+      .pause(1000)
+      .assert.urlContains('2')
       .end();
   }
 };
