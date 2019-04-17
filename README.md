@@ -1,5 +1,5 @@
 # Hackeye.io
-An extension for Hackaday.io that allows you to view existing projects and user profiles!
+An extension for [Hackaday.io](https://hackaday.io) that allows you to view existing projects and user profiles!
 
 ### Noteworthy Features: 
 
