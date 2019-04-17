@@ -101,9 +101,9 @@ the API call to achieve this.
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%203.22.40%20PM.png)
 
-![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%202.09.13%20PM.png)
-
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%201.56.20%20PM.png)
+
+![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%202.09.13%20PM.png)
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%209.41.55%20PM.png)
 
