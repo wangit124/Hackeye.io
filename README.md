@@ -58,8 +58,10 @@ are the following which I was able to implement with my own ability in a limited
 Perhaps the most DIFFICULT aspects of my exploration (required the most debugging, google 
 searches, and head-banging) were: 
 
-A. Implementing methods of client-server data-sharing using Node->EJS->Client JS
+A. Implementing methods of client-server data-sharing using Node --> EJS --> Vanilla JS
+
 B. Rendering dynamic client-side content from HTTP requests using ONLY Vanilla JS and EJS
+
 C. Learning syntax and documentation for new test framework NightWatch JS and running tests 
    using Chrome Webdriver.
 
