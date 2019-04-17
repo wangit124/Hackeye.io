@@ -53,7 +53,7 @@ app.get('/loading', (req, res) => {
 app.get('/projects/:pg', (req, res) => {
    // construct url to get first project page
    var pgNum = req.params.pg;
-   var perPage = 5;
+   var perPage = 10;
 
    // Sort search by number of views
    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page='+ perPage + '&page=' + pgNum + '&sortby=views';
@@ -61,7 +61,7 @@ app.get('/projects/:pg', (req, res) => {
    // Make api call
    request.get(url, (error, response, body) => {
        // If successful, render JSON data
-       if (!error && response.statusCode === 200 && pgNum >= 0 && pgNum <= JSON.parse(body)['last_page']) {
+       if (!error && response.statusCode === 200 && pgNum > 0 && pgNum <= JSON.parse(body)['last_page']) {
            var projData = JSON.parse(body);
            var projArr = projData['projects'];
 
@@ -77,7 +77,7 @@ app.get('/projects/:pg', (req, res) => {
 
        }
        else {
-           res.send("Projects not found. Please specify a page range between [0, " + JSON.parse(body)['last_page'] + "]");
+           res.send("Projects not found. Please specify a page range between [1, " + JSON.parse(body)['last_page'] + "]");
        }
    });
 });

@@ -15,7 +15,7 @@
     </div>
     <ul id="projects">
         <% for (var index =0; index<projects.length; index++) {%>
-        <li id="project-item" class="modules">
+        <li id="project-item" onclick="visitProject(this)" data-link=<%=projects[index]['url']%> class="modules">
             <% var num = index+1;%>
             <% var metadata = projects[index];%>
             <img class="proj-img" width="100%" height="auto" src=<%=metadata['image_url']%>></img>
@@ -51,6 +51,7 @@
 
 </body>
 <script>
+
     // Detect hovers for tooltips
     document.addEventListener('mouseover', function (e) {
         // Get array of tooltips
@@ -138,6 +139,7 @@
                         var index = i + 1;
                         // Change project image
                         projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
+                        projItems[i].setAttribute('data-link', projects[i]['url']);
 
                         // Get the user id and construct url for GET call
                         var userId = projects[i]['owner_id'];
@@ -204,6 +206,7 @@
                         var index = i + 1;
                         // Change project image
                         projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
+                        projItems[i].setAttribute('data-link', projects[i]['url']);
 
                         // Get the user id and construct url for GET call
                         var userId = projects[i]['owner_id'];
@@ -244,6 +247,11 @@
             // Change url to match page
             window.history.pushState("next", "page " + nextPage, "/projects/" + nextPage);
         }
+    }
+
+    // If click on project, visit page
+    function visitProject(projItem) {
+        window.location.replace(projItem.getAttribute('data-link'));
     }
 
 </script>
