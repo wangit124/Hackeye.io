@@ -1,8 +1,8 @@
 // Store hackaday API data
 global.apiData = {};
-apiData.clientId = 'IqOKhUebqhieIOciR2mf2WJT90ZLkcVJ4OEIcdwgMlZEcTw5';
-apiData.clientSecret = 'Ayc2OnrtVRXV2OQtP91EEHeB8ZDAeN3J6RAANxTFrU5MVgZL';
-apiData.userKey = 'QlhAEh7ym6so8Puk';
+apiData.clientId = ***HIDDEN*** ;
+apiData.clientSecret = ***HIDDEN*** ;
+apiData.userKey = ***HIDDEN*** ;
 
 // Create API URLs:
 apiData.apiKey = '?api_key=' + apiData.userKey;
