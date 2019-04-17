@@ -1,5 +1,5 @@
 # Hackeye.io
-An extension for Hackaday.io that allows you to view existing project details of other users!
+An extension for Hackaday.io that allows you to view existing project details of other users! (Works best on Chrome browser!)
 
 [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
