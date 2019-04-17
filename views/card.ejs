@@ -1,26 +1,26 @@
 <script>
     // By default, hide tooltip
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Get the user id and construct url for GET call
         var userId = <%=metadata['owner_id']%>
         var index = <%=num%>
         var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
-        var imgId = 'user-img-'+index;
-        var userCard = 'userProf-'+index;
+        var imgId = 'user-img-' + index;
+        var userCard = 'userProf-' + index;
 
         // If hover on user image, display metadata
         var profile = document.getElementById(imgId);
-        
+
         // Create new https request
         var xhttp = new XMLHttpRequest();
         // Once request is recieved, parse response and append
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             // If request is done and successful, parse
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
                 var userImg = document.getElementById(imgId);
-                userImg.innerHTML = '<a href='+data['url']+'><img src='+data['image_url']+' class="profile-link" id="'+index+'" data-id="'+ userId+'" ></a>';
+                userImg.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '" ></a>';
             }
         };
         xhttp.open("GET", userUrl, true);
