@@ -16,7 +16,7 @@ An extension for Hackaday.io that allows you to view existing project details of
   4. Testing using NightWatch JS and NPM debugging tools
   5. Hosted on Heroku server
   
-(Works best on Chrome browser!)
+## Works best on Chrome browser!
 
 [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
@@ -29,10 +29,10 @@ An extension for Hackaday.io that allows you to view existing project details of
 In summary, I found the task both exhilarating AND challenging. What I am most proud to showcase 
 are the following which I was able to implement with my own ability in a limited time setting:
 
-         1. UNIQUE CONCEPT: My project is [HackEye.io](https://hackeye-io.herokuapp.com), and it's a unique concept for viewing user 
-         projects and profiles normally available on [Hackaday.io](https://hackaday.io). This website is specifically made 
+         1. UNIQUE CONCEPT: My project is HackEye.io, and it's a unique concept for viewing user 
+         projects and profiles normally available on Hackaday.io. This website is specifically made 
          to showcase these projects in a highly appealing fashion, with a different style compared 
-         to the original project page at [Hackaday.io/projects](https://hackaday.io/projects). 
+         to the original project page at Hackaday.io/projects. 
      
          2. INTERACTIVE: I designed a custom logo and animated its Landing/Loading pages using JS SVG 
          animation frameworks Tweenmax, Timeline and Greensock. Moreover, I implemented on-hover user 
