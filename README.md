@@ -6,7 +6,7 @@ An extension for [Hackaday.io](https://hackaday.io) that allows you to view exis
   1. Custom SVG animations for landing and loading page logo and titles
   2. No-reload pagination of project items with custom URLs for each page
   3. User tooltip displaying profile name, rank and motivations on hover
-  4. Highly streamline UI platform, adaptable to any portfolio/project type data
+  4. Highly streamline UI platform, adaptable to any portfolio-style app
   
 ### Frameworks and tools (Hackaday.io API as main): 
 
