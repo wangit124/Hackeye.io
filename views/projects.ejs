@@ -132,7 +132,7 @@
             var prevPage = parseInt(currPage) - 1;
 
             // Construct url
-            masterURL = 'https://api.hackaday.io/v1/projects?api_key=***HIDDEN*** &per_page=' + perPage + '&page=' + prevPage + '&sortby=views';;
+            masterURL = 'https://api.hackaday.io/v1/projects?api_key=***HIDDEN*** &per_page=' + perPage + '&page=' + prevPage + '&sortby=views';
 
             // Change url to match page
             window.history.pushState("previous", "page " + prevPage, "/projects/" + prevPage);
