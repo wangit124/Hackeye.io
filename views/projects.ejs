@@ -154,60 +154,60 @@
             // Change url to match page
             window.history.pushState("next", "page " + nextPage, "/projects/" + nextPage);
         }
-    }
+    
+        // Create new https request to get prev
+        var xhttp = new XMLHttpRequest();
+        // Once request is recieved, parse response and append
+        xhttp.onreadystatechange = function () {
+            // If request is done and successful, parse
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+                var projects = data['projects'];
+                var projItems = document.getElementsByClassName('modules');
+                // for each project item, change its html to match 
+                for (var i = 0; i < projItems.length; i++) {
+                    var index = i + 1;
+                    // Change project image
+                    projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
+                    projItems[i].setAttribute('data-link', projects[i]['url']);
 
-    // Create new https request to get prev
-    var xhttp = new XMLHttpRequest();
-    // Once request is recieved, parse response and append
-    xhttp.onreadystatechange = function () {
-        // If request is done and successful, parse
-        if (this.readyState == 4 && this.status == 200) {
-            var data = this.responseText;
-            data = JSON.parse(data);
-            var projects = data['projects'];
-            var projItems = document.getElementsByClassName('modules');
-            // for each project item, change its html to match 
-            for (var i = 0; i < projItems.length; i++) {
-                var index = i + 1;
-                // Change project image
-                projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
-                projItems[i].setAttribute('data-link', projects[i]['url']);
+                    // Get the user id and construct url for GET call
+                    var userId = projects[i]['owner_id'];
+                    var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=***HIDDEN*** ';
 
-                // Get the user id and construct url for GET call
-                var userId = projects[i]['owner_id'];
-                var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=***HIDDEN*** ';
+                    // If hover on user image, display metadata
+                    var profile = projItems[i].getElementsByClassName('profpic')[0];
 
-                // If hover on user image, display metadata
-                var profile = projItems[i].getElementsByClassName('profpic')[0];
+                    // Get image for profile pic
+                    var newhttp = new XMLHttpRequest();
+                    // Once request is recieved, parse response and append
+                    newhttp.onreadystatechange = function () {
+                        // If request is done and successful, parse
+                        if (this.readyState == 4 && this.status == 200) {
+                            var data = this.responseText;
+                            data = JSON.parse(data);
+                            profile.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '"></a>';
+                        }
+                    };
+                    newhttp.open("GET", userUrl, false);
+                    newhttp.send(null);
+                }
 
-                // Get image for profile pic
-                var newhttp = new XMLHttpRequest();
-                // Once request is recieved, parse response and append
-                newhttp.onreadystatechange = function () {
-                    // If request is done and successful, parse
-                    if (this.readyState == 4 && this.status == 200) {
-                        var data = this.responseText;
-                        data = JSON.parse(data);
-                        profile.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '"></a>';
-                    }
-                };
-                newhttp.open("GET", userUrl, false);
-                newhttp.send(null);
+                for (var i = 0; i < projItems.length; i++) {
+                    // Set card information, such as header, skulls, blah
+                    projItems[i].getElementsByClassName('projheader')[0].innerHTML = projects[i]['name'];
+                    projItems[i].getElementsByClassName('viewstats')[0].innerHTML = projects[i]['views'];
+                    projItems[i].getElementsByClassName('commstats')[0].innerHTML = projects[i]['comments'];
+                    projItems[i].getElementsByClassName('followstats')[0].innerHTML = projects[i]['followers'];
+                    projItems[i].getElementsByClassName('skullstats')[0].innerHTML = projects[i]['skulls'];
+                    projItems[i].getElementsByClassName('proj-description')[0].innerHTML = projects[i]['summary'];
+                }
             }
-
-            for (var i = 0; i < projItems.length; i++) {
-                // Set card information, such as header, skulls, blah
-                projItems[i].getElementsByClassName('projheader')[0].innerHTML = projects[i]['name'];
-                projItems[i].getElementsByClassName('viewstats')[0].innerHTML = projects[i]['views'];
-                projItems[i].getElementsByClassName('commstats')[0].innerHTML = projects[i]['comments'];
-                projItems[i].getElementsByClassName('followstats')[0].innerHTML = projects[i]['followers'];
-                projItems[i].getElementsByClassName('skullstats')[0].innerHTML = projects[i]['skulls'];
-                projItems[i].getElementsByClassName('proj-description')[0].innerHTML = projects[i]['summary'];
-            }
-        }
-    };
-    xhttp.open("GET", masterURL, true);
-    xhttp.send();
+        };
+        xhttp.open("GET", masterURL, true);
+        xhttp.send();
+ }
 
 </script>
 
