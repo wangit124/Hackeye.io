@@ -53,14 +53,15 @@ app.get('/loading', (req, res) => {
 app.get('/projects/:pg', (req, res) => {
    // construct url to get first project page
    var pgNum = req.params.pg;
+   var perPage = 5;
 
    // Sort search by number of views
-   var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page=5' + '&page=' + pgNum + '&sortby=views';
+   var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page='+ perPage + '&page=' + pgNum + '&sortby=views';
 
    // Make api call
    request.get(url, (error, response, body) => {
        // If successful, render JSON data
-       if (!error && response.statusCode === 200) {
+       if (!error && response.statusCode === 200 && pgNum >= 0 && pgNum <= JSON.parse(body)['last_page']) {
            var projData = JSON.parse(body);
            var projArr = projData['projects'];
 
@@ -69,7 +70,9 @@ app.get('/projects/:pg', (req, res) => {
 
            // Render data in ejs
            res.render('projects', {
-               projects: projArr
+               projects: projArr,
+               maxPages: projData['last_page'],
+               perpage: perPage
            });
 
        }
