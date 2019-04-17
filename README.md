@@ -20,8 +20,7 @@ An extension for [Hackaday.io](https://hackaday.io) that allows you to view exis
 
   1. Render project modules faster and prevent page from freezing between transitions
   2. Adapt project for mobile and cross-platform capabilities including multiple browsers
-  3. Create modals for each project module to display more detailed metadata including 
-     instructions, image slides, etc.
+  3. Create modals for each project module to display instructions, and more images
   
 ### Works best on Chrome browser! [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
