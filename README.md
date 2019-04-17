@@ -15,7 +15,12 @@ An extension for [Hackaday.io](https://hackaday.io) that allows you to view exis
   3. EJS and Vanilla JS for client side API calls and front end rendering
   4. Testing using NightWatch JS and NPM debugging tools
   5. Hosted on Heroku server
-  
+
+### Possible Improvements:
+
+  1. Render project modules faster and prevent page from freezing between transitions
+  2. Adapt project for mobile and cross-platform capabilities including multiple browsers
+  3. 
 ### Works best on Chrome browser! [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-16%20at%2010.31.20%20PM.png)
