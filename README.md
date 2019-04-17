@@ -118,6 +118,8 @@ backend project /GET requests. Store data locally and display it on hover.
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%2011.10.49%20PM.png)
 
+![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-15%20at%207.35.11%20PM.png)
+
 Task 10: Test again using Nightwatch to see if browser can transition from landing page to project page, 
 and display all necessary data from first of many projects page. Also test if changing the URL to certain
 pages renders that specific page from the list of projects. 
