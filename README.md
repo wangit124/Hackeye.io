@@ -12,7 +12,7 @@ An extension for [Hackaday.io](https://hackaday.io) that allows you to view exis
 
   1. SVG animations with Tweenmax, Timeline, Greensock js
   2. Node/Express for backend routes and API calls
-  3. EJS and Vanilla JS for client side API calls and front end rendering
+  3. EJS and Vanilla JS for client side API calls and rendering
   4. Testing using NightWatch JS and NPM debugging tools
   5. Hosted on Heroku server
 
