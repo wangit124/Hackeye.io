@@ -17,6 +17,7 @@
     "nightwatch": "^1.0.19"
   },
   "scripts": {
+    "test": "nightwatch",
     "start": "node server.js"
   },
   "repository": {
