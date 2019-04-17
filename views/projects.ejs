@@ -107,12 +107,19 @@
         document.getElementById('header').style.margin = '40px 40px 0 40px';
     });
 
+    // If click on project, visit page
+    function visitProject(projItem) {
+        window.location.replace(projItem.getAttribute('data-link'));
+    }
+
     // Get next/prev function no reload :)
     function getNextOrPrev(bool) {
         // Get current and last page numbers
         var currPage = window.location.href.split('/')[4];
         var projLen = <%=maxPages%>
         var perPage = <%=perpage%>
+        var masterURL = 0;
+
         // 1 if next, 0 if prev
         if (!bool) {
             // If first page, return
@@ -121,61 +128,11 @@
                 return;
             }
 
-            // Create new https request to get prev
-            var xhttp = new XMLHttpRequest();
+            // Get previous page number
             var prevPage = parseInt(currPage) - 1;
+
             // Construct url
-            var prevUrl = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + prevPage + '&sortby=views';;
-            // Once request is recieved, parse response and append
-            xhttp.onreadystatechange = function () {
-                // If request is done and successful, parse
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = this.responseText;
-                    data = JSON.parse(data);
-                    var projects = data['projects'];
-                    var projItems = document.getElementsByClassName('modules');
-                    // for each project item, change its html to match 
-                    for (var i = 0; i < projItems.length; i++) {
-                        var index = i + 1;
-                        // Change project image
-                        projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
-                        projItems[i].setAttribute('data-link', projects[i]['url']);
-
-                        // Get the user id and construct url for GET call
-                        var userId = projects[i]['owner_id'];
-                        var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
-
-                        // If hover on user image, display metadata
-                        var profile = projItems[i].getElementsByClassName('profpic')[0];
-
-                        // Get image for profile pic
-                        var newhttp = new XMLHttpRequest();
-                        // Once request is recieved, parse response and append
-                        newhttp.onreadystatechange = function () {
-                            // If request is done and successful, parse
-                            if (this.readyState == 4 && this.status == 200) {
-                                var data = this.responseText;
-                                data = JSON.parse(data);
-                                profile.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '"></a>';
-                            }
-                        };
-                        newhttp.open("GET", userUrl, false);
-                        newhttp.send(null);
-                    }
-
-                    for (var i = 0; i < projItems.length; i++) {
-                        // Set card information, such as header, skulls, blah
-                        projItems[i].getElementsByClassName('projheader')[0].innerHTML = projects[i]['name'];
-                        projItems[i].getElementsByClassName('viewstats')[0].innerHTML = projects[i]['views'];
-                        projItems[i].getElementsByClassName('commstats')[0].innerHTML = projects[i]['comments'];
-                        projItems[i].getElementsByClassName('followstats')[0].innerHTML = projects[i]['followers'];
-                        projItems[i].getElementsByClassName('skullstats')[0].innerHTML = projects[i]['skulls'];
-                        projItems[i].getElementsByClassName('proj-description')[0].innerHTML = projects[i]['summary'];
-                    }
-                }
-            };
-            xhttp.open("GET", prevUrl, true);
-            xhttp.send();
+            masterURL = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + prevPage + '&sortby=views';;
 
             // Change url to match page
             window.history.pushState("previous", "page " + prevPage, "/projects/" + prevPage);
@@ -187,72 +144,70 @@
                 alert("No more pages!");
                 return;
             }
-            // Create new https request to get prev
-            var xhttp = new XMLHttpRequest();
+
+            // Get next page 
             var nextPage = parseInt(currPage) + 1;
 
             // Construct url
-            var nextUrl = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + nextPage + '&sortby=views';;
-            // Once request is recieved, parse response and append
-            xhttp.onreadystatechange = function () {
-                // If request is done and successful, parse
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = this.responseText;
-                    data = JSON.parse(data);
-                    var projects = data['projects'];
-                    var projItems = document.getElementsByClassName('modules');
-                    // for each project item, change its html to match 
-                    for (var i = 0; i < projItems.length; i++) {
-                        var index = i + 1;
-                        // Change project image
-                        projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
-                        projItems[i].setAttribute('data-link', projects[i]['url']);
-
-                        // Get the user id and construct url for GET call
-                        var userId = projects[i]['owner_id'];
-                        var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
-
-                        // If hover on user image, display metadata
-                        var profile = projItems[i].getElementsByClassName('profpic')[0];
-
-                        // Get image for profile pic
-                        var newhttp = new XMLHttpRequest();
-                        // Once request is recieved, parse response and append
-                        newhttp.onreadystatechange = function () {
-                            // If request is done and successful, parse
-                            if (this.readyState == 4 && this.status == 200) {
-                                var data = this.responseText;
-                                data = JSON.parse(data);
-                                profile.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '"></a>';
-                            }
-                        };
-                        newhttp.open("GET", userUrl, false);
-                        newhttp.send(null);
-                    }
-
-                    for (var i = 0; i < projItems.length; i++) {
-                        // Set card information, such as header, skulls, blah
-                        projItems[i].getElementsByClassName('projheader')[0].innerHTML = projects[i]['name'];
-                        projItems[i].getElementsByClassName('viewstats')[0].innerHTML = projects[i]['views'];
-                        projItems[i].getElementsByClassName('commstats')[0].innerHTML = projects[i]['comments'];
-                        projItems[i].getElementsByClassName('followstats')[0].innerHTML = projects[i]['followers'];
-                        projItems[i].getElementsByClassName('skullstats')[0].innerHTML = projects[i]['skulls'];
-                        projItems[i].getElementsByClassName('proj-description')[0].innerHTML = projects[i]['summary'];
-                    }
-                }
-            };
-            xhttp.open("GET", nextUrl, true);
-            xhttp.send();
+            masterURL = 'https://api.hackaday.io/v1/projects?api_key=QlhAEh7ym6so8Puk&per_page=' + perPage + '&page=' + nextPage + '&sortby=views';;
 
             // Change url to match page
             window.history.pushState("next", "page " + nextPage, "/projects/" + nextPage);
         }
     }
 
-    // If click on project, visit page
-    function visitProject(projItem) {
-        window.location.replace(projItem.getAttribute('data-link'));
-    }
+    // Create new https request to get prev
+    var xhttp = new XMLHttpRequest();
+    // Once request is recieved, parse response and append
+    xhttp.onreadystatechange = function () {
+        // If request is done and successful, parse
+        if (this.readyState == 4 && this.status == 200) {
+            var data = this.responseText;
+            data = JSON.parse(data);
+            var projects = data['projects'];
+            var projItems = document.getElementsByClassName('modules');
+            // for each project item, change its html to match 
+            for (var i = 0; i < projItems.length; i++) {
+                var index = i + 1;
+                // Change project image
+                projItems[i].getElementsByClassName('proj-img')[0].src = projects[i]['image_url'];
+                projItems[i].setAttribute('data-link', projects[i]['url']);
+
+                // Get the user id and construct url for GET call
+                var userId = projects[i]['owner_id'];
+                var userUrl = 'https://api.hackaday.io/v1/users/' + userId + '?api_key=QlhAEh7ym6so8Puk';
+
+                // If hover on user image, display metadata
+                var profile = projItems[i].getElementsByClassName('profpic')[0];
+
+                // Get image for profile pic
+                var newhttp = new XMLHttpRequest();
+                // Once request is recieved, parse response and append
+                newhttp.onreadystatechange = function () {
+                    // If request is done and successful, parse
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = this.responseText;
+                        data = JSON.parse(data);
+                        profile.innerHTML = '<a href=' + data['url'] + '><img src=' + data['image_url'] + ' class="profile-link" id="' + index + '" data-id="' + userId + '"></a>';
+                    }
+                };
+                newhttp.open("GET", userUrl, false);
+                newhttp.send(null);
+            }
+
+            for (var i = 0; i < projItems.length; i++) {
+                // Set card information, such as header, skulls, blah
+                projItems[i].getElementsByClassName('projheader')[0].innerHTML = projects[i]['name'];
+                projItems[i].getElementsByClassName('viewstats')[0].innerHTML = projects[i]['views'];
+                projItems[i].getElementsByClassName('commstats')[0].innerHTML = projects[i]['comments'];
+                projItems[i].getElementsByClassName('followstats')[0].innerHTML = projects[i]['followers'];
+                projItems[i].getElementsByClassName('skullstats')[0].innerHTML = projects[i]['skulls'];
+                projItems[i].getElementsByClassName('proj-description')[0].innerHTML = projects[i]['summary'];
+            }
+        }
+    };
+    xhttp.open("GET", masterURL, true);
+    xhttp.send();
 
 </script>
 
