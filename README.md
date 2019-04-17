@@ -103,18 +103,18 @@ the API call to achieve this.
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%202.09.13%20PM.png)
 
-Task 8: Once there are little to no stylistic errors, retrieve max number of modules from API call, 
-and test if it can handle all the data efficiently and display it.
-
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%201.56.20%20PM.png)
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%209.41.55%20PM.png)
 
+Task 8: Once there are little to no stylistic errors, retrieve max number of modules from API call, 
+and test if it can handle all the data efficiently and display it.
+
+![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-16%20at%2010.03.59%20PM.png)
+
 Task 9: For each module, add hover and click events to display user tool tip and to visit original 
 Hackaday.io links. For interactive tool-tip, make necessary API calls using user Id's retrieved from 
 backend project /GET requests. Store data locally and display it on hover.
-
-![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-16%20at%2010.03.59%20PM.png)
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-14%20at%2011.10.49%20PM.png)
 
