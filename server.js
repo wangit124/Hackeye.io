@@ -53,7 +53,7 @@ app.get('/loading', (req, res) => {
 app.get('/projects/:pg', (req, res) => {
    // construct url to get first project page
    var pgNum = req.params.pg;
-   var perPage = 25;
+   var perPage = 50;
 
    // Sort search by number of views
    var url = global.apiData.apiUrl + '/projects' + global.apiData.apiKey + '&per_page='+ perPage + '&page=' + pgNum + '&sortby=views';
