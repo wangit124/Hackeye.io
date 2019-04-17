@@ -16,9 +16,7 @@ An extension for Hackaday.io that allows you to view existing project details of
   4. Testing using NightWatch JS and NPM debugging tools
   5. Hosted on Heroku server
   
-## Works best on Chrome browser!
-
-[LAUNCH HERE!](https://hackeye-io.herokuapp.com)
+### Works best on Chrome browser! [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
 ![alt_text](https://github.com/hwanggit/Hackeye.io/blob/master/screenshots/Screen%20Shot%202019-04-16%20at%2010.31.20%20PM.png)
 
