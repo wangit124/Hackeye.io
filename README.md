@@ -22,6 +22,7 @@ An extension for [Hackaday.io](https://hackaday.io) that allows you to view exis
   2. Adapt project for mobile and cross-platform capabilities including multiple browsers
   3. Create modals for each project module to display instructions, and more images
   4. Allow user to select number of modules per page, and sort items using queries
+  5. QuickSearch search bar to easily filter data and see what is important
   
 ### Works best on Chrome browser! [LAUNCH HERE!](https://hackeye-io.herokuapp.com)
 
